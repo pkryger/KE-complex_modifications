@@ -113,6 +113,22 @@ def c_x_key_strokes
         'conditions' => [Karabiner.variable_if('C-x', 1)],
       },
 
+      # C-x h (select all)
+      {
+        'type' => 'basic',
+        'from' => {
+          'key_code' => 'h',
+          'modifiers' => Karabiner.from_modifiers,
+        },
+        'to' => [
+          {
+            'key_code' => 'a',
+            'modifiers' => ['left_command'],
+          },
+        ],
+        'conditions' => [Karabiner.variable_if('C-x', 1)],
+      },
+
       # Ignore other keys after C-x
       {
         'type' => 'basic',
