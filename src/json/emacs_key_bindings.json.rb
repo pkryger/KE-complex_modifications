@@ -9,8 +9,8 @@ require 'json'
 require_relative '../lib/karabiner.rb'
 
 def main
-  control_keys_rev = 'rev 10'
-  option_keys_rev = 'rev 5'
+  control_keys_rev = 'rev 11'
+  option_keys_rev = 'rev 6'
   bash_style_rev = 'rev 2'
 
   puts JSON.pretty_generate(
@@ -295,6 +295,18 @@ def control_keys(options)
         },],
         'conditions' => [Karabiner.frontmost_application_if(['eclipse'])] + options[:frontmost_application_if],
       },
+      {
+        'type' => 'basic',
+        'from' => {
+          'key_code' => 'y',
+          'modifiers' => Karabiner.from_modifiers(['control'], %w[caps_lock shift]),
+        },
+        'to' => [{
+          'key_code' => 'v',
+          'modifiers' => ['left_command'],
+        },],
+        'conditions' => options[:frontmost_application_unless] + options[:frontmost_application_if],
+      },
     ],
   }
 
@@ -368,6 +380,15 @@ def option_keys(options)
           'modifiers' => Karabiner.from_modifiers(['option'], ['caps_lock']),
         },
         'to' => [{ 'key_code' => 'delete_forward', 'modifiers' => ['left_option'] }],
+        'conditions' => options[:frontmost_application_unless] + options[:frontmost_application_if],
+      },
+      {
+        'type' => 'basic',
+        'from' => {
+          'key_code' => 'w',
+          'modifiers' => Karabiner.from_modifiers(['option'], ['caps_lock']),
+        },
+        'to' => [{ 'key_code' => 'c', 'modifiers' => ['left_command'] }],
         'conditions' => options[:frontmost_application_unless] + options[:frontmost_application_if],
       },
     ],
