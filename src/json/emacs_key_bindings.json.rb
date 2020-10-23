@@ -197,6 +197,15 @@ def control_keys(options)
       {
         'type' => 'basic',
         'from' => {
+          'key_code' => 'g',
+          'modifiers' => Karabiner.from_modifiers(['control'], ['caps_lock']),
+        },
+        'to' => [{ 'key_code' => 'escape' }],
+        'conditions' => options[:frontmost_application_unless] + options[:frontmost_application_if],
+      },
+      {
+        'type' => 'basic',
+        'from' => {
           'key_code' => 'open_bracket',
           'modifiers' => Karabiner.from_modifiers(['control'], ['caps_lock']),
         },
